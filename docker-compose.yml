@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5003:5003"
+    environment:
+      FLASK_APP: app.py
+      FLASK_RUN_HOST: 0.0.0.0
+      APP_PROFILE: docker
+    volumes:
+      - .:/app
+    command: flask run --host=0.0.0.0 --port=5003
+    container_name: english_sphere_container
+    depends_on:
+      - mongo-english-sphere
+      - llm-gateway
+
+  mongo-english-sphere:
+    image: mongo:latest
+    container_name: mongo-english-sphere
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  llm-gateway:
+    image: llm-gateway-app:latest
+    container_name: llm_gateway_container_es
+    ports:
+      - "5002:5002"
+    environment:
+      FLASK_APP: app.py
+      FLASK_RUN_HOST: 0.0.0.0
+      APP_PROFILE: docker
+    command: flask run --host=0.0.0.0 --port=5002
+
+  sound-to-text:
+    image: sound-to-text-app:latest
+    container_name: sound_to_text_container_es
+    ports:
+      - "5001:5001"
+    environment:
+      FLASK_APP: app.py
+      FLASK_RUN_HOST: 0.0.0.0
+      APP_PROFILE: docker
+    command: flask run --host=0.0.0.0 --port=5001
+
+volumes:
+  mongo_data:

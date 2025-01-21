@@ -1,0 +1,41 @@
+├── english-sphere/
+│   └── app.py
+│   └── config.ini
+│   └── docker-compose.yml
+│   └── Dockerfile
+│   └── estrutura_projeto.txt
+│   └── logstash.conf
+│   └── loki-config.yml
+│   └── map_project_structure.py
+│   └── Readme.md
+│   └── requirements.txt
+│   ├── adapter/
+│   │   └── __init__.py
+│   │   ├── db/
+│   │   │   └── db_client.py
+│   │   │   └── db_client_mongo.py
+│   │   ├── http/
+│   │   │   └── __init__.py
+│   │   │   ├── entry/
+│   │   │   │   └── question_endpoint.py
+│   │   │   │   └── __init__.py
+│   │   │   │   ├── request/
+│   │   │   │   │   └── question_request.py
+│   │   │   ├── out/
+│   │   │   │   └── llm_gateway_client.py
+│   │   │   │   └── sound_to_text_client.py
+│   │   ├── log/
+│   │   │   └── log_config.py
+│   │   │   └── log_mongo.py
+│   ├── business/
+│   │   └── question_business.py
+│   │   └── __init__.py
+│   ├── domain/
+│   │   ├── exceptions/
+│   │   │   └── NotFoundException.py
+│   ├── temp/
+│   │   ├── logs/
+│   ├── Util/
+│   │   └── AIUtil.py
+│   │   └── config_util.py
+│   │   └── __init__.py
